@@ -1,4 +1,4 @@
-package com.panarik;
+package com.panarik.commandModel;
 
 import java.io.*;
 import java.util.concurrent.TimeUnit;
