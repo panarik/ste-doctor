@@ -1,18 +1,24 @@
-package com.panarik.commandModel;
+package com.panarik.command;
 
 import java.io.*;
+import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
-public class Main {
+public class Command {
+
+    private final LinkedList<String> terminalOutput = new LinkedList<>();
+
     public static void main(String[] args) {
 
-        File location = new File("<put here full user path>");
-
         try {
-            runCommand(location, "<put here command>");
+            new Command().runCommand(new File("/usr/local/test"), "ls");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public LinkedList<String> getTerminalOutput() {
+        return terminalOutput;
     }
 
     /**
@@ -22,7 +28,7 @@ public class Main {
      * @param command    command text.
      * @throws IOException
      */
-    private static void runCommand(File whereToRun, String command) throws IOException {
+    public void runCommand(File whereToRun, String command) throws IOException {
         System.out.println("Directory:" + whereToRun);
         System.out.println("Command: " + command);
 
@@ -41,7 +47,7 @@ public class Main {
 
         boolean isFinished;
         try {
-            isFinished = process.waitFor(10, TimeUnit.SECONDS);
+            isFinished = process.waitFor(15, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -54,11 +60,18 @@ public class Main {
         }
     }
 
-    private static void print(InputStream input) throws IOException {
+    /**
+     * Print terminal answers.
+     *
+     * @param input
+     * @throws IOException
+     */
+    private void print(InputStream input) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+            String singleLine;
+            while ((singleLine = reader.readLine()) != null) {
+                terminalOutput.add(singleLine);
+                System.out.println(singleLine);
             }
         }
     }
