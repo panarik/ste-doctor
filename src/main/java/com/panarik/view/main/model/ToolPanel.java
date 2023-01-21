@@ -1,12 +1,10 @@
 package com.panarik.view.main.model;
 
-import com.panarik.command.Command;
-import com.panarik.view.tools.ScreenTools;
+import com.panarik.command.CommandManager;
+import com.panarik.command.model.Response;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 import java.util.Objects;
 
 public class ToolPanel extends JPanel {
@@ -36,14 +34,9 @@ public class ToolPanel extends JPanel {
     private void configFields() {
         textField.setMaximumSize(new Dimension(200, 50));
         button.addActionListener(e -> {
-            try {
-                Command command = new Command();
-                command.runCommand(new File("/usr/local/test"), "ls");
-                icon.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/done-30.png"))));
-                textField.setText(new ScreenTools().printTerminal(command.getTerminalOutput()));
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            Response response = new CommandManager().check("shell");
+            icon.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/done-30.png"))));
+            textField.setText(response.getResponse());
         });
     }
 
