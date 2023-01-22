@@ -1,5 +1,7 @@
 package com.panarik.view.main.model;
 
+import com.panarik.manager.database.Tool;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,12 +11,17 @@ import java.util.List;
  */
 public class TableField extends JPanel {
 
-    private final List<ToolPanel> tools = new ArrayList<>();
+    private final List<ToolPanel> toolPanels = new ArrayList<>(); // List of panel components.
+    private final List<Tool> tools; // List of checkable tools.
 
-    public TableField() {
-        tools.add(new ToolPanel("line1", new JButton("button 1"), new JTextArea("tool1 name")));
-        tools.add(new ToolPanel("line2", new JButton("button 2"), new JTextArea("tool2 name")));
-        for (ToolPanel tool : tools) add(tool);
+    public TableField(List<Tool> tools) {
+        this.tools = tools;
+        for (Tool tool : tools) {
+            for (String checker : tool.checkers) {
+                toolPanels.add(new ToolPanel(tool.name, checker));
+            }
+        }
+        for (ToolPanel tool : toolPanels) add(tool);
         this.setLayout(new BoxLayout(this, 1));
     }
 

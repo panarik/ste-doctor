@@ -20,7 +20,7 @@ public class MainView extends RootView {
     }
 
     private void configWindow() {
-        int width = screenTools.getScreenCenter().width;
+        int width = screenTools.getScreenCenter().width +200;
         int height = screenTools.getScreenCenter().height;
         setSize(width, height);
         setVisible(true);
@@ -30,11 +30,10 @@ public class MainView extends RootView {
     }
 
     private void addFields() {
-        add(new TitleButtonField("Check"), BorderLayout.NORTH);
-        add(new TableField());
+        add(new TitleButtonField("Check all"), BorderLayout.NORTH); // 'Check all' button on top of window.
+        add(new TableField(tools)); // Table with tools checkers.
         this.revalidate();
     }
-
 
 
 }

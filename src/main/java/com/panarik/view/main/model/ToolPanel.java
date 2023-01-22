@@ -12,16 +12,18 @@ import java.util.Objects;
  */
 public class ToolPanel extends JPanel {
 
-    private String panelName;
     private JButton button;
     private JLabel icon;
     private JTextArea textField;
+    private String toolName;
+    private String checkerName;
 
-    public ToolPanel(String panelName, JButton button, JTextArea textField) {
-        this.panelName = panelName;
-        this.button = button;
+    public ToolPanel(String toolName, String checkerName) {
+        this.toolName = toolName;
+        this.checkerName = checkerName;
+        this.button = new JButton(toolName + " - " + checkerName);
         this.icon = new JLabel();
-        this.textField = textField;
+        this.textField = new JTextArea();
         addFields();
         configFields();
         this.setLayout(new BoxLayout(this, 0));
@@ -35,9 +37,9 @@ public class ToolPanel extends JPanel {
     }
 
     private void configFields() {
-        textField.setMaximumSize(new Dimension(200, 50));
+        textField.setMaximumSize(new Dimension(400, 50));
         button.addActionListener(e -> {
-            Response response = new CommandManager().check("shell");
+            Response response = new CommandManager().check(toolName, checkerName);
             icon.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/ok-30.png"))));
             textField.setText(response.getResponse());
         });

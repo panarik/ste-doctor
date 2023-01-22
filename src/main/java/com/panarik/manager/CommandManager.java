@@ -36,13 +36,6 @@ public class CommandManager {
 
         // Create main window object with requested tools.
         mainView = new MainView(tools);
-
-        // Receive controllers
-
-
-
-
-
     }
 
     /**
@@ -51,11 +44,11 @@ public class CommandManager {
      * @param toolName Tool name.
      * @return Response with answers from terminal.
      */
-    public Response check(String toolName) {
-        Response response = new Response();
+    public Response check(String toolName, String checkerName) {
+        Response response;
         try {
-            if (toolName.equals("shell")) // ToDo: database needed.
-                response = command.runCommand(new File("/usr/local/test"), "echo $SHELL");
+            String request = dataBase.getRequestToTerminal(toolName, checkerName); // Get request for terminal.
+            response = command.runCommand(new File("/usr/local/test"), request); // Receive answer form terminal.
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

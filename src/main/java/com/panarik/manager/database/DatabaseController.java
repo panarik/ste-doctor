@@ -50,6 +50,18 @@ public class DatabaseController {
         return tools;
     }
 
+    public String getRequestToTerminal(String toolName, String checkerName) {
+        connect();
+        String result = "";
+        try (ResultSet resultSet = execute("SELECT Request FROM Verifying WHERE ToolName='" + toolName + "' AND VerifyName='" + checkerName + "'")) {
+            while ((resultSet.next())) result = resultSet.getString("Request");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        disconnect();
+        return result;
+    }
+
     private ResultSet execute(String request) throws SQLException {
         resultSet = statement.executeQuery(request);
         return resultSet;
