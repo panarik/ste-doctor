@@ -69,7 +69,7 @@ public class DatabaseController {
 
     private void connect() {
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:tools.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:resources/tools.db");
             statement = connection.createStatement();
         } catch (SQLException e) {
             System.err.println("Check your jdbc driver dependency and database path.");
