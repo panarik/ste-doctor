@@ -27,7 +27,7 @@ public class ToolPanel extends JPanel {
         addFields();
         configFields();
         this.setLayout(new BoxLayout(this, 0));
-        this.icon.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/clear-30.png"))));
+        this.icon.setIcon(new ImageIcon("resources/icons/clear-30.png"));
     }
 
     private void addFields() {
@@ -40,7 +40,7 @@ public class ToolPanel extends JPanel {
         textField.setMaximumSize(new Dimension(400, 50));
         button.addActionListener(e -> {
             Response response = new CommandManager().check(toolName, checkerName);
-            icon.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/ok-30.png"))));
+            icon.setIcon(new ImageIcon("resources/icons/ok-30.png"));
             textField.setText(response.getResponse());
         });
     }
