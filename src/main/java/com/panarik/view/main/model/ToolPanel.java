@@ -1,12 +1,15 @@
 package com.panarik.view.main.model;
 
-import com.panarik.command.CommandManager;
-import com.panarik.command.model.Response;
+import com.panarik.manager.CommandManager;
+import com.panarik.manager.command.Response;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
+/**
+ * Horizontal panel with checkable tools fields.
+ */
 public class ToolPanel extends JPanel {
 
     private String panelName;
@@ -35,7 +38,7 @@ public class ToolPanel extends JPanel {
         textField.setMaximumSize(new Dimension(200, 50));
         button.addActionListener(e -> {
             Response response = new CommandManager().check("shell");
-            icon.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/done-30.png"))));
+            icon.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/ok-30.png"))));
             textField.setText(response.getResponse());
         });
     }

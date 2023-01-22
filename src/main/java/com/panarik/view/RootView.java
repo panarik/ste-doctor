@@ -6,6 +6,6 @@ import javax.swing.*;
 
 public abstract class RootView extends JFrame {
 
-    protected ScreenTools tools = new ScreenTools();
+    protected ScreenTools screenTools = new ScreenTools();
 
 }

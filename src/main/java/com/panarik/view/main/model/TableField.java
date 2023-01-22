@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Vertical table with {@link ToolPanel} - tool panels.
+ */
 public class TableField extends JPanel {
 
     private final List<ToolPanel> tools = new ArrayList<>();

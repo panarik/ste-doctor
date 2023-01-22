@@ -1,7 +1,10 @@
-package com.panarik.command.model;
+package com.panarik.manager.command;
 
 import java.util.LinkedList;
 
+/**
+ * Terminal command response.
+ */
 public class Response {
 
     private final LinkedList<String> responseOutput = new LinkedList<>();

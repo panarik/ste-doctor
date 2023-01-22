@@ -1,4 +1,4 @@
-package com.panarik.command.model;
+package com.panarik.manager.command;
 
 import java.io.*;
 import java.util.concurrent.TimeUnit;
@@ -19,7 +19,7 @@ public class CommandController {
     }
 
     /**
-     * Runs terminal shell commands in specific directory.
+     * Runs specific terminal shell commands in specific directory.
      *
      * @param whereToRun Directory for command.
      * @param command    Command text.

@@ -1,11 +1,11 @@
 package com.panarik;
 
-import com.panarik.view.main.MainView;
+import com.panarik.manager.CommandManager;
 
 public class Start {
 
     public static void main(String[] args) {
-        new MainView();
+        new CommandManager().startMain();
     }
 
 }
